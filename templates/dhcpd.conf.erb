@@ -1,0 +1,17 @@
+# Managed by Puppet, any changes will be overwritten
+#
+# DHCP Server Configuration file.
+#   see /usr/share/doc/dhcp*/dhcpd.conf.sample
+#   see 'man 5 dhcpd.conf'
+#
+option domain-name "<%= domainname %>;
+option domain-name-servers <% @nameservers.each do |nameserver| -%><%= nameserver -%>, <% end -%>;
+default-lease-time 600;
+max-lease-time 7200;
+
+
+subnet <%= subnet %> netmask <%= netmask %> {
+  range <% @addressrange.each do |address| -%> <%= address -%> <% end -%>;
+  option routers <%= router %>;
+}
+
