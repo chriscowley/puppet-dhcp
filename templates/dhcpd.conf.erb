@@ -4,10 +4,10 @@
 #   see /usr/share/doc/dhcp*/dhcpd.conf.sample
 #   see 'man 5 dhcpd.conf'
 #
-option domain-name "<%= domainname %>;
-option domain-name-servers <% @nameservers.each do |nameserver| -%><%= nameserver -%>, <% end -%>;
-default-lease-time 600;
-max-lease-time 7200;
+option domain-name "<%= domainname %>";
+option domain-name-servers <%= nameservers.collect! {|i| "#{i}" }.join(",") %>;
+default-lease-time <%= default-lease %>;
+max-lease-time <%= max-lease %>;
 
 
 subnet <%= subnet %> netmask <%= netmask %> {
