@@ -6,12 +6,14 @@
 #
 option domain-name "<%= domainname %>";
 option domain-name-servers <%= nameservers.collect! {|i| "#{i}" }.join(",") %>;
-default-lease-time <%= default-lease %>;
-max-lease-time <%= max-lease %>;
+default-lease-time <%= defaultLease %>;
+max-lease-time <%= maxLease %>;
 
 
 subnet <%= subnet %> netmask <%= netmask %> {
   range <% @addressrange.each do |address| -%> <%= address -%> <% end -%>;
   option routers <%= router %>;
+  <% if @nextserver %>next-server <%= nextserver %>;
+  filename "/pxelinux.0";<% end %>
 }
 

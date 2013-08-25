@@ -9,8 +9,9 @@ class dhcp (
   $nameservers   = undef,
   $addressrange  = undef,
   $router        = undef,
-  $default-lease = 86400,
-  $max-lease     = 604800,
+  $defaultLease  = 86400,
+  $maxLease      = 604800,
+  $nextserver    = undef,
 ) {
   case $operatingsystem {
     centos, redhat: {
